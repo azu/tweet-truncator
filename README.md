@@ -37,6 +37,22 @@ See [example/](example/)
 
 TweetTruncator is a core class of tweet-truncator.
 
+```js
+const truncator = new TweetTruncator({
+    defaultPrefix: "See:",
+    template: `%desc% "%title%" %url% %tags%`
+});
+const contents = {
+    title: "TITLE",
+    url: "https://github.com/twitter/twitter-text",
+    desc: "",
+    quote: "quote",
+    tags: []
+};
+const overLength = 10;// it means that remove 10 chars from contents.
+var result = truncator.truncateStatus(contents, overLength);
+```
+
 ## Tests
 
     npm test
