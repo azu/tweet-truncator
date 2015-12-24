@@ -10,7 +10,7 @@ const joinText = (array, separator) => {
     return array.filter(isNotEmpty).join(separator);
 };
 const defaultOptions = {
-    prefix: "",
+    defaultPrefix: "",
     template: `%desc% "%title%" %url% %tags%`,
     truncatedOrder: [
         "tags",
@@ -24,7 +24,7 @@ const defaultOptions = {
 export default class TweetTruncator {
     constructor(options = {}) {
         this.template = options.template || defaultOptions.template;
-        this.prefix = options.prefix || defaultOptions.prefix;
+        this.defaultPrefix = options.defaultPrefix || defaultOptions.defaultPrefix;
         this.truncatedOrder = options.truncatedOrder || defaultOptions.truncatedOrder
     }
 
@@ -35,7 +35,7 @@ export default class TweetTruncator {
     joinContents(contents) {
         let template = this.template;
         let {desc, quote, title, url, tags} = contents;
-        let prefix = desc ? '' : this.prefix;
+        let prefix = desc ? '' : this.defaultPrefix;
 
         return template ?
                this.extractTemplate(prefix, template, contents) :

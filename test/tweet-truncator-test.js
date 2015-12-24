@@ -1,10 +1,10 @@
 import assert from "power-assert"
-import truncateContents, {TweetTruncator} from "../src/index";
+import {truncate, TweetTruncator} from "../src/index";
 describe("twitter-truncate", function () {
     context("options.prefix", () => {
         it("should change order for truncating", ()=> {
             const truncator = new TweetTruncator({
-                prefix: "See:"
+                defaultPrefix: "See:"
             });
             const contents = {
                 title: "TITLE",
