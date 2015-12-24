@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "example.js",
+  "scripts": {
+    "test": "node example.js"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "tweet-truncate": "file:.."
+  }
+}
