@@ -8,6 +8,8 @@ Truncate contents to 140 chars.
 
 ## Usage
 
+### truncate(content, [options])
+
 ```js
 var truncate = require("tweet-truncate").truncate;
 var contents = {
@@ -28,6 +30,12 @@ console.log(result);
 Truncate contents to 140 chars. "tweet-truncate" https://github.com/azu/tweet-truncate ##twitter #JavaScript
 */
 ```
+
+See [example/](example/)
+
+#### [TweetTruncator](src/tweet-truncator.js)
+
+TweetTruncator is a core class of tweet-truncator.
 
 ## Tests
 

@@ -65,23 +65,23 @@ describe("twitter-truncate", function () {
             tags: ["tags"]
         };
         it("should truncate title", ()=> {
-            var result = truncateContents(contents);
+            var result = truncate(contents);
             assert(!result.includes(contents.title));
         });
         it("should truncate desc", ()=> {
-            var result = truncateContents(contents);
+            var result = truncate(contents);
             assert(!result.includes(contents.desc.substr(-10)));
         });
         it("should truncate quote", ()=> {
-            var result = truncateContents(contents);
+            var result = truncate(contents);
             assert(!result.includes(contents.quote));
         });
         it("should truncate tags", ()=> {
-            var result = truncateContents(contents);
+            var result = truncate(contents);
             assert(!result.includes(contents.tags[0]));
         });
         it("should not truncate url", ()=> {
-            var result = truncateContents(contents);
+            var result = truncate(contents);
             assert(result.includes(contents.url));
         });
     });
