@@ -1,20 +1,20 @@
-# tweet-truncate [![Build Status](https://travis-ci.org/azu/tweet-truncate.svg?branch=master)](https://travis-ci.org/azu/tweet-truncate)
+# tweet-truncator [![Build Status](https://travis-ci.org/azu/tweet-truncator.svg?branch=master)](https://travis-ci.org/azu/tweet-truncator)
 
 Truncate contents to 140 chars.
 
 ## Installation
 
-    npm install tweet-truncate
+    npm install tweet-truncator
 
 ## Usage
 
 ### truncate(content, [options])
 
 ```js
-var truncate = require("tweet-truncate").truncate;
+var truncate = require("tweet-truncator").truncate;
 var contents = {
-    title: "tweet-truncate",
-    url: "https://github.com/azu/tweet-truncate",
+    title: "tweet-truncator",
+    url: "https://github.com/azu/tweet-truncator",
     desc: "Truncate contents to 140 chars.",
     quote: "quote",
     tags: ["#twitter", "JavaScript"]
@@ -27,7 +27,7 @@ var options = {
 var result = truncate(contents, options);
 console.log(result);
 /*
-Truncate contents to 140 chars. "tweet-truncate" https://github.com/azu/tweet-truncate ##twitter #JavaScript
+Truncate contents to 140 chars. "tweet-truncator" https://github.com/azu/tweet-truncator ##twitter #JavaScript
 */
 ```
 

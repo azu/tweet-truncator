@@ -1,4 +1,4 @@
-var truncate = require("tweet-truncate").truncate;
+var truncate = require("tweet-truncator").truncate;
 var contents = {
     title: "tweet-truncate",
     url: "https://github.com/azu/tweet-truncate",
