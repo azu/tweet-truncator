@@ -1,4 +1,4 @@
-# tweet-truncate
+# tweet-truncate [![Build Status](https://travis-ci.org/azu/tweet-truncate.svg?branch=master)](https://travis-ci.org/azu/tweet-truncate)
 
 Truncate contents to 140 chars.
 
