@@ -4,7 +4,7 @@ var contents = {
     url: "https://github.com/azu/tweet-truncate",
     desc: "Truncate contents to 140 chars.",
     quote: "quote",
-    tags: ["#twitter", "JavaScript"]
+    tags: ["twitter", "JavaScript"]
 };
 var options = {
     defaultPrefix: "See:",

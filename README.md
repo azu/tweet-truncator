@@ -27,7 +27,7 @@ var options = {
 var result = truncate(contents, options);
 console.log(result);
 /*
-Truncate contents to 140 chars. "tweet-truncator" https://github.com/azu/tweet-truncator ##twitter #JavaScript
+Truncate contents to 140 chars. "tweet-truncator" https://github.com/azu/tweet-truncator #twitter #JavaScript
 */
 ```
 
