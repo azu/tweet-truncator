@@ -27,4 +27,4 @@ export function truncate(contents, options = {}) {
         return twitterTr.truncateStatus(fixedContents, over);
     }
     return status;
-};
+}

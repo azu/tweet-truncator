@@ -41,6 +41,7 @@
     "power-assert": "^1.2.0"
   },
   "dependencies": {
+    "debug": "^2.2.0",
     "object-assign": "^4.0.1",
     "twitter-text": "^1.13.2"
   }
