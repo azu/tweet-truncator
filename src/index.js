@@ -1,9 +1,9 @@
 // LICENSE : MIT
 "use strict";
 import TweetTruncator from "./tweet-truncator";
-import ObjectAssign from "object-assign";
 // export class
-export { TweetTruncator as TweetTruncator};
+export { TweetTruncator as TweetTruncator };
+
 /**
  * truncate contents object with maxLength.
  * @param {object} contents
@@ -13,13 +13,14 @@ export { TweetTruncator as TweetTruncator};
 export function truncate(contents, options = {}) {
     const maxLength = options.maxLength || 280;// default: 280
     const twitterTr = new TweetTruncator(options);
-    const fixedContents = ObjectAssign({}, {
+    const fixedContents = {
         desc: "",
         quote: "",
         title: "",
         url: "",
-        tags: []
-    }, contents);
+        tags: [],
+        ...contents,
+    };
     fixedContents.tags = fixedContents.tags.map(tag => `#${tag}`);
     const status = twitterTr.joinContents(fixedContents);
     let over = twitterTr.getTweetLength(status) - maxLength;

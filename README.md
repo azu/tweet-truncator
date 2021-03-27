@@ -22,7 +22,7 @@ const contents = {
 const options = {
     defaultPrefix: "See:",
     template: '%desc% "%title%" %url% %tags%',
-    // maxLegth: 280
+    // maxLength: 280
 };
 const result = truncate(contents, options);
 console.log(result);

@@ -1,7 +1,6 @@
 // LICENSE : MIT
 "use strict";
 import * as twttr from 'twitter-text';
-import ObjectAssign from "object-assign";
 // DEBUG=TweetTruncator*
 const debug = require("debug")("TweetTruncator");
 const joinText = (array, separator) => {
@@ -76,7 +75,7 @@ export default class TweetTruncator {
     truncateStatus(contents, overLength = 0) {
         let over = overLength;
 
-        let copiedContents = ObjectAssign({}, contents);
+        let copiedContents = { ...contents };
         const elisionMark = this.elisionMark;
         const getTweetLength = this.getTweetLength.bind(this);
         const truncateContent = this.truncateContent.bind(this);
