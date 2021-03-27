@@ -1,15 +1,14 @@
-var truncate = require("tweet-truncator").truncate;
-var contents = {
+const truncate = require("tweet-truncator").truncate;
+const contents = {
     title: "tweet-truncate",
     url: "https://github.com/azu/tweet-truncate",
-    desc: "Truncate contents to 140 chars.",
+    desc: "Truncate contents to 140 chars. over over over over over over over over over over over over",
     quote: "quote",
     tags: ["twitter", "JavaScript"]
 };
-var options = {
+const options = {
     defaultPrefix: "See:",
     template: '%desc% "%title%" %url% %tags%',
-    // maxLength: 140 // default is 140
 };
-var result = truncate(contents, options);
+const result = truncate(contents, options);
 console.log(result);
