@@ -17,7 +17,7 @@ export { TweetTruncator as TweetTruncator };
  * @returns {string}
  */
 export function truncate(contents, options = {}) {
-    const maxLength = options.maxLength || 280;// default: 280
+    const maxLength = options.maxLength || 280; // default: 280
     const twitterTr = new TweetTruncator(options);
     const fixedContents = {
         desc: "",
@@ -25,9 +25,9 @@ export function truncate(contents, options = {}) {
         title: "",
         url: "",
         tags: [],
-        ...contents,
+        ...contents
     };
-    fixedContents.tags = fixedContents.tags.map(tag => `#${tag}`);
+    fixedContents.tags = fixedContents.tags.map((tag) => `#${tag}`);
     const status = twitterTr.joinContents(fixedContents);
     let over = twitterTr.getTweetLength(status) - maxLength;
     if (over > 0) {

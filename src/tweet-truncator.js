@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import * as twttr from 'twitter-text';
+import * as twttr from "twitter-text";
 // DEBUG=TweetTruncator*
 const debug = require("debug")("TweetTruncator");
 const joinText = (array, separator) => {
@@ -12,13 +12,7 @@ const joinText = (array, separator) => {
 const defaultOptions = {
     defaultPrefix: "",
     template: `%desc% "%title%" %url% %tags%`,
-    truncatedOrder: [
-        "tags",
-        "title",
-        "quote",
-        "desc",
-        "url"
-    ],
+    truncatedOrder: ["tags", "title", "quote", "desc", "url"],
     // sentenc…
     elisionMark: "…"
 };
@@ -39,37 +33,38 @@ export default class TweetTruncator {
     joinContents(contents) {
         let template = this.template;
         let { desc, quote, title, url, tags } = contents;
-        let prefix = desc ? '' : this.defaultPrefix;
+        let prefix = desc ? "" : this.defaultPrefix;
 
-        return template ?
-            this.extractTemplate(prefix, template, contents) :
-            joinText([prefix, desc, quote, title, url, ...tags], ' ');
+        return template
+            ? this.extractTemplate(prefix, template, contents)
+            : joinText([prefix, desc, quote, title, url, ...tags], " ");
     }
 
     extractTemplate(prefix, template, contents) {
         contents.usage = {};
 
-        let fixedTemplate = template.replace(
-            /%(desc|quote|title|url|tags|br)%/g,
-            (match, name) => {
-                if (name === 'br') {
-                    return '\n';
+        let fixedTemplate = template
+            .replace(/%(desc|quote|title|url|tags|br)%/g, (match, name) => {
+                if (name === "br") {
+                    return "\n";
                 }
 
                 contents.usage[name] = true;
 
-                return contents[name].length ? match : '';
-            }
-        ).trim().replace(/^ +| +$/mg, '').replace(/ +/g, ' ');
+                return contents[name].length ? match : "";
+            })
+            .trim()
+            .replace(/^ +| +$/gm, "")
+            .replace(/ +/g, " ");
 
-        return joinText([prefix, ...(fixedTemplate.split(' '))].map(content =>
-            content.replace(
-                /%(desc|quote|title|url|tags)%/g,
-                (match, name) => name === 'tags' ?
-                    contents.tags.join(' ') :
-                    contents[name]
-            )
-        ), ' ');
+        return joinText(
+            [prefix, ...fixedTemplate.split(" ")].map((content) =>
+                content.replace(/%(desc|quote|title|url|tags)%/g, (match, name) =>
+                    name === "tags" ? contents.tags.join(" ") : contents[name]
+                )
+            ),
+            " "
+        );
     }
 
     truncateStatus(contents, overLength = 0) {
@@ -80,22 +75,25 @@ export default class TweetTruncator {
         const getTweetLength = this.getTweetLength.bind(this);
         const truncateContent = this.truncateContent.bind(this);
         let truncators = {
-            tags: array => {
+            tags: (array) => {
                 let arr = array.slice();
 
-                copiedContents.tags = arr.reverse().filter(tag => {
-                    if (over <= 0) {
-                        return true;
-                    }
+                copiedContents.tags = arr
+                    .reverse()
+                    .filter((tag) => {
+                        if (over <= 0) {
+                            return true;
+                        }
 
-                    over -= tag.length;
-                }).reverse();
+                        over -= tag.length;
+                    })
+                    .reverse();
                 debug(`tags: ${arr.length} -> ${copiedContents.tags.length}`);
                 if (copiedContents.tags.length || over <= 0) {
                     return true;
                 }
             },
-            title: string => {
+            title: (string) => {
                 let str = truncateContent(string, over + elisionMark.length);
                 debug(`[TITLE] over: ${over}
 ${string}
@@ -113,7 +111,7 @@ ${str.length ? str : "[DELETE]"}`);
 
                 return true;
             },
-            quote: string => {
+            quote: (string) => {
                 let str = truncateContent(string.slice(1, -1), over + elisionMark.length);
                 debug(`[Quote] over: ${over}
 ${string}
@@ -132,7 +130,7 @@ ${str.length ? str : "[DELETE]"}`);
 
                 return true;
             },
-            desc: string => {
+            desc: (string) => {
                 var str = truncateContent(string, over + elisionMark.length) + elisionMark;
                 copiedContents.desc = str;
                 debug(`[DESC] over: ${over}
@@ -141,7 +139,7 @@ ${string}
 ${str.length ? str : "[DELETE]"}`);
                 return true;
             },
-            url: string => {
+            url: (string) => {
                 // no change
                 return true;
             }
@@ -152,7 +150,7 @@ ${str.length ? str : "[DELETE]"}`);
             }
             const truncatorName = this.truncatedOrder[i];
             if (copiedContents.usage && !copiedContents.usage[truncatorName]) {
-                copiedContents[truncatorName] = truncatorName === 'tags' ? [] : '';
+                copiedContents[truncatorName] = truncatorName === "tags" ? [] : "";
             }
             const content = copiedContents[truncatorName];
             const truncate = truncators[truncatorName];
@@ -172,7 +170,7 @@ ${str.length ? str : "[DELETE]"}`);
         let over = overLength;
 
         if (!urls.length || twLen <= over + 1) {
-            return strArr.slice(0, -(over + 1)).join('');
+            return strArr.slice(0, -(over + 1)).join("");
         }
 
         for (var i = 0; i < urls.length; i++) {
@@ -185,18 +183,18 @@ ${str.length ? str : "[DELETE]"}`);
                 break;
             }
             strArr = strArr.slice(0, start - (len === end ? end : len));
-            over -= twLen - this.getTweetLength(strArr.join(''));
+            over -= twLen - this.getTweetLength(strArr.join(""));
             if (over < 0) {
                 break;
             }
 
-            twLen = this.getTweetLength(strArr.join(''));
+            twLen = this.getTweetLength(strArr.join(""));
         }
 
         if (over >= 0) {
             strArr = strArr.slice(0, -(over + 1));
         }
 
-        return strArr.join('');
+        return strArr.join("");
     }
 }

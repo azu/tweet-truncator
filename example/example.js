@@ -8,7 +8,7 @@ const contents = {
 };
 const options = {
     defaultPrefix: "See:",
-    template: '%desc% "%title%" %url% %tags%',
+    template: '%desc% "%title%" %url% %tags%'
 };
 const result = truncate(contents, options);
 console.log(result);
