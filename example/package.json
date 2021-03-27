@@ -4,7 +4,7 @@
   "description": "",
   "main": "example.js",
   "scripts": {
-    "pretest": "npm rm tweet-truncator && npm i",
+    "pretest": "yarn install",
     "test": "node example.js"
   },
   "author": "azu",

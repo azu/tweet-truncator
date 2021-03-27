@@ -1,6 +1,8 @@
-# tweet-truncator [![Build Status](https://travis-ci.org/azu/tweet-truncator.svg?branch=master)](https://travis-ci.org/azu/tweet-truncator)
+# tweet-truncator [![Actions Status: test](https://github.com/azu/tweet-truncator/workflows/test/badge.svg)](https://github.com/azu/tweet-truncator/actions?query=workflow%3A"test")
 
-Truncate contents to 140 chars.
+Truncate contents to 280 chars for tweeting.
+
+- [twitter-text-js](https://github.com/twitter/twitter-text/tree/master/js)
 
 ## Installation
 
@@ -11,20 +13,20 @@ Truncate contents to 140 chars.
 ### truncate(content, [options])
 
 ```js
-var truncate = require("tweet-truncator").truncate;
-var contents = {
+import { truncate } from "tweet-truncator";
+const contents = {
     title: "tweet-truncator",
     url: "https://github.com/azu/tweet-truncator",
     desc: "Truncate contents to 140 chars.",
     quote: "quote",
     tags: ["#twitter", "JavaScript"]
 };
-var options = {
+const options = {
     defaultPrefix: "See:",
     template: '%desc% "%title%" %url% %tags%',
-    // maxLength: 140 // default is 140
+    // maxLength: 280
 };
-var result = truncate(contents, options);
+const result = truncate(contents, options);
 console.log(result);
 /*
 Truncate contents to 140 chars. "tweet-truncator" https://github.com/azu/tweet-truncator #twitter #JavaScript

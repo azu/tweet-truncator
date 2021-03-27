@@ -24,7 +24,9 @@
     "build": "babel src --out-dir lib --source-maps",
     "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
-    "test": "mocha && (cd example && npm t)"
+    "test": "mocha && (cd example && npm t)",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githook"
   },
   "keywords": [
     "twitter",
@@ -33,16 +35,27 @@
   ],
   "description": "Truncate contents of tweet to 140 chars.",
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-preset-es2015": "^6.3.13",
-    "espower-babel": "^4.0.1",
-    "mocha": "^2.3.4",
-    "power-assert": "^1.2.0"
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.13.8",
+    "lint-staged": "^10.5.4",
+    "mocha": "^8.3.2",
+    "prettier": "^2.2.1"
   },
   "dependencies": {
-    "debug": "^2.2.0",
-    "object-assign": "^4.0.1",
-    "twitter-text": "^1.13.2"
+    "debug": "^4.3.1",
+    "twitter-text": "^3.1.0"
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
   }
 }
