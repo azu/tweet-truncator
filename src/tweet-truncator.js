@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import twttr from 'twitter-text';
+import * as twttr from 'twitter-text';
 import ObjectAssign from "object-assign";
 // DEBUG=TweetTruncator*
 const debug = require("debug")("TweetTruncator");
@@ -30,7 +30,7 @@ export default class TweetTruncator {
         this.defaultPrefix = options.defaultPrefix || defaultOptions.defaultPrefix;
         this.truncatedOrder = options.truncatedOrder || defaultOptions.truncatedOrder;
         this.elisionMark = options.elisionMark || defaultOptions.elisionMark;
-        this.twitterTextOptions = options.twitterTextOptions || null;
+        this.twitterTextOptions = options.twitterTextOptions || {};
     }
 
     getTweetLength(str) {
@@ -39,12 +39,12 @@ export default class TweetTruncator {
 
     joinContents(contents) {
         let template = this.template;
-        let {desc, quote, title, url, tags} = contents;
+        let { desc, quote, title, url, tags } = contents;
         let prefix = desc ? '' : this.defaultPrefix;
 
         return template ?
-               this.extractTemplate(prefix, template, contents) :
-               joinText([prefix, desc, quote, title, url, ...tags], ' ');
+            this.extractTemplate(prefix, template, contents) :
+            joinText([prefix, desc, quote, title, url, ...tags], ' ');
     }
 
     extractTemplate(prefix, template, contents) {
@@ -67,8 +67,8 @@ export default class TweetTruncator {
             content.replace(
                 /%(desc|quote|title|url|tags)%/g,
                 (match, name) => name === 'tags' ?
-                                 contents.tags.join(' ') :
-                                 contents[name]
+                    contents.tags.join(' ') :
+                    contents[name]
             )
         ), ' ');
     }

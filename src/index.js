@@ -11,7 +11,7 @@ export { TweetTruncator as TweetTruncator};
  * @returns {string}
  */
 export function truncate(contents, options = {}) {
-    const maxLength = options.maxLength || 140;// default: 140
+    const maxLength = options.maxLength || 280;// default: 280
     const twitterTr = new TweetTruncator(options);
     const fixedContents = ObjectAssign({}, {
         desc: "",

@@ -1,4 +1,4 @@
-import assert from "power-assert"
+import assert from "assert"
 import {truncate, TweetTruncator} from "../src/index";
 describe("twitter-truncate", function () {
     context("options.prefix", () => {
@@ -56,11 +56,11 @@ describe("twitter-truncate", function () {
             assert(result.includes(contents.title));
         });
     });
-    context("contents is over 140", ()=> {
+    describe("contents is over 280", ()=> {
         const contents = {
             title: "!title!",
             url: "https://github.com/twitter/twitter-text",
-            desc: "This repo is a collection of libraries and conformance tests to standardize parsing of tweet text. It synchronizes development, testing, creating issues, and pull requests for twitter-text's implementations and specification.",
+            desc: "This repo is a collection of libraries and conformance tests to standardize parsing of tweet text. It synchronizes development, testing, creating issues, and pull requests for twitter-text's implementations and specification.This repo is a collection of libraries and conformance tests to standardize parsing of tweet text. It synchronizes development, testing, creating issues, and pull requests for twitter-text's implementations and specification.",
             quote: "quote",
             tags: ["tags"]
         };
@@ -70,7 +70,7 @@ describe("twitter-truncate", function () {
         });
         it("should truncate desc", ()=> {
             var result = truncate(contents);
-            assert(!result.includes(contents.desc.substr(-10)));
+            assert(!result.includes(contents.desc.substring(0, 280)));
         });
         it("should truncate quote", ()=> {
             var result = truncate(contents);
