@@ -13,7 +13,7 @@ const defaultOptions = {
     defaultPrefix: "",
     template: `%desc% "%title%" %url% %tags%`,
     truncatedOrder: ["tags", "title", "quote", "desc", "url"],
-    // sentenc…
+    // text…
     elisionMark: "…"
 };
 
