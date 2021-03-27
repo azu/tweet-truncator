@@ -1,6 +1,8 @@
 # tweet-truncator [![Actions Status: test](https://github.com/azu/tweet-truncator/workflows/test/badge.svg)](https://github.com/azu/tweet-truncator/actions?query=workflow%3A"test")
 
-Truncate contents to 140 chars.
+Truncate contents to 280 chars for tweeting.
+
+- [twitter-text-js](https://github.com/twitter/twitter-text/tree/master/js)
 
 ## Installation
 
