@@ -6,7 +6,13 @@ export { TweetTruncator as TweetTruncator };
 
 /**
  * truncate contents object with maxLength.
- * @param {object} contents
+ * @param {{
+ *   desc?: string,
+ *   quote?: string,
+ *   title?: string,
+ *   url?: string,
+ *   tags?: string[]
+ * }} contents
  * @param {object} options
  * @returns {string}
  */
