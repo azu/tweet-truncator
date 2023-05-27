@@ -1,6 +1,6 @@
 {
   "name": "tweet-truncator",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Truncate contents of tweet to 140 chars.",
   "keywords": [
     "twitter",
