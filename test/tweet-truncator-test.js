@@ -1,6 +1,23 @@
 import assert from "assert";
 import { truncate, TweetTruncator } from "../src/index";
+
 describe("twitter-truncate", function () {
+    // https://github.com/azu/tweet-truncator/issues/3
+    context("undefined value", () => {
+        it("should fill empty string if property is nullish", () => {
+            const contents = {
+                title: undefined,
+                url: undefined,
+                desc: undefined,
+                quote: undefined,
+                tags: undefined
+            };
+            const result = truncate(contents, {
+                template: "%title%%url%%desc%%quote%%tags%"
+            });
+            assert.strictEqual(result, "");
+        });
+    });
     context("options.prefix", () => {
         it("should change order for truncating", () => {
             const truncator = new TweetTruncator({
